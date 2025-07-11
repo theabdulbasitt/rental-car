@@ -22,19 +22,21 @@ const Header = () => {
 
   // SEO-friendly dropdowns (shuffled order)
   const servicesMenu: { name: string; href: string }[] = [
-    { name: "City Tours", href: "/services/wine-city-tour" },
-    { name: "Wedding Limo", href: "/services/wedding-prom" },
-    { name: "Hourly Rides", href: "/services/point-to-point" },
-    { name: "Shuttle Service", href: "/services/exclusive-shuttle" },
-    { name: "Corporate Travel", href: "/services/corporate" },
-    { name: "Van Rides", href: "/services/van-service" },
-    { name: "Sedan Service", href: "/services/sedan-car" },
-    { name: "DC Tours", href: "/services/dc-tours" },
-    { name: "School Transport", href: "/services/school-transport" },
-    { name: "Limo Rental", href: "/services/limousine-rental" },
-    { name: "Party Bus", href: "/services/party-bus" },
-    { name: "Motor Coach", href: "/services/motor-coaches" },
-    { name: "Airport Limo", href: "/services/airport-limo" },
+    { name: "Point to Point Limo Service", href: "/services/point-to-point" },
+    { name: "Airport Transportation", href: "/services/airport-limo" },
+    {
+      name: "Van or Exclusive Shuttles Service",
+      href: "/services/van-shuttle",
+    },
+    { name: "Hourly Limo Service", href: "/services/hourly-limo" },
+    { name: "Corporate Transportaation Service", href: "/services/corporate" },
+    { name: "Winery & City Tours", href: "/services/wine-city-tour" },
+    { name: "Group Transportation", href: "/services/group-transportation" },
+    { name: "Private School Bus Service", href: "/services/school-transport" },
+    { name: "Bachelor/ette Party Limo Service", href: "/services/party-limo" },
+    { name: "Wedding Special", href: "/services/wedding-prom" },
+    { name: "Bus Charter | Rental", href: "/services/bus-charter" },
+    { name: "Exotic Car Rental", href: "/services/exotic-car" },
   ];
 
   const airportsMenu: { name: string; href: string }[] = [
@@ -54,12 +56,12 @@ const Header = () => {
   ];
 
   const fleetMenu: { name: string; href: string }[] = [
-    { name: "Sedans", href: "/our-fleet/sedan" },
-    { name: "SUVs", href: "/our-fleet/suv" },
-    { name: "Limousines", href: "/our-fleet/limousine" },
-    { name: "Sprinter Vans", href: "/our-fleet/sprinter-van" },
-    { name: "Mini Buses", href: "/our-fleet/mini-bus" },
-    { name: "Coaches", href: "/our-fleet/motor-coaches" },
+    { name: "Sedans", href: "/fleet/sedans" },
+    { name: "SUVs", href: "/fleet/suvs" },
+    { name: "Limousines", href: "/fleet/limousines" },
+    { name: "Sprinter Vans", href: "/fleet/sprinter-vans" },
+    { name: "Mini Buses", href: "/fleet/mini-buses" },
+    { name: "Coaches", href: "/fleet/coaches" },
   ];
 
   const companyMenu: { name: string; href: string }[] = [

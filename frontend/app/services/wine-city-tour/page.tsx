@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/carousel";
 import { Users, Luggage, Wifi } from "lucide-react";
 import Link from "next/link";
+import NeedHelpBooking from "@/components/NeedHelpBooking";
 
 const countyTours = [
   {
@@ -165,123 +166,152 @@ function ConnectForm() {
 
 export default function WineCityTourPage() {
   return (
-    <main className="min-h-screen bg-white py-8 px-2 md:px-8">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Left: Main Content */}
-        <div className="lg:col-span-2">
-          <h2 className="text-2xl font-bold mb-2">
-            Ride in Elegance and Style with RnH Worldwide Chauffeur Driven
-            Limousine Service
-          </h2>
-          <p className="mb-2">
-            Experience the epitome of sophistication and convenience with RnH
-            Worldwide Limo&apos;s bespoke Winery and Brewery Tours.
+    <>
+      {/* Hero Section */}
+      <section className="relative h-[400px] md:h-[500px] flex items-center justify-center">
+        <img
+          src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1600"
+          alt="Vineyard"
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        />
+        <div className="absolute inset-0 bg-black opacity-50 z-10" />
+        <div className="relative z-20 flex flex-col items-center justify-center w-full h-full text-center px-4">
+          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-lg">
+            WINE &amp; CITY TOUR
+          </h1>
+          <p className="text-lg md:text-xl text-white mb-6 max-w-2xl mx-auto drop-shadow">
+            Contact us today or use our reservations portal to book your ride
+            and discover why discerning clients choose us for excellence.
           </p>
-          <p className="mb-2">
-            Indulge in a journey meticulously tailored to your preferences as we
-            whisk you away to explore the finest breweries, distilleries, and
-            vineyards across Maryland, Washington DC, Virginia, and beyond. Our
-            dedicated team at RnH Worldwide Limo ensures a private getaway where
-            every detail is impeccably managed, allowing you to fully immerse
-            yourself in the flavors and ambiance of the region&apos;s premier
-            establishments.
-          </p>
-          <p className="mb-6">
-            Enjoy a seamless and stress-free Winery Tour experience with RnH
-            Worldwide Limo. With suggested tour durations ranging from 4 to 6
-            hours for an enriching exploration of multiple locations, or 8 to 10
-            hours for a comprehensive all-day excursion, our meticulously
-            planned itineraries cater to your every need. From transportation to
-            tastings, dining, and leisurely shopping, let us curate an itinerary
-            that promises unforgettable moments of relaxation and indulgence.
-            Trust RnH Worldwide Limo to elevate your Winery and Brewery Tours to
-            new heights of sophistication and refinement.
-          </p>
-          <Accordion type="single" collapsible className="w-full">
-            {countyTours.map((county, idx) => (
-              <AccordionItem key={county.county} value={county.county}>
-                <AccordionTrigger className="text-lg font-bold uppercase tracking-wide">
-                  {county.county}
-                </AccordionTrigger>
-                <AccordionContent>
-                  {county.locations.length > 0 ? (
-                    <ul className="list-disc list-inside ml-4">
-                      {county.locations.map((loc) => (
-                        <li key={loc}>{loc}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <span className="text-gray-500">Coming soon...</span>
-                  )}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-          {/* Car/Fleet Slider */}
-          <div className="my-16 flex justify-center items-center w-full">
-            <div className="flex flex-col items-center w-full max-w-4xl">
-              <h2 className="text-3xl font-bold text-center mb-2">Fleet</h2>
-              <p className="text-center mb-8 text-gray-600">
-                Premium Vehicles for Every Occasion, Combining Comfort, Style,
-                and Reliability.
-              </p>
-              <Carousel className="w-full flex justify-center items-center">
-                <CarouselContent>
-                  {vehicles.map((vehicle, idx) => (
-                    <CarouselItem
-                      key={vehicle.name}
-                      className="flex flex-col items-center justify-center px-4">
-                      <img
-                        src={vehicle.image}
-                        alt={vehicle.name}
-                        className="h-48 object-contain mb-4"
-                      />
-                      <h3 className="text-xl font-bold text-center mb-2">
-                        {vehicle.name}
-                      </h3>
-                      <div className="flex flex-col items-center gap-1 mb-2">
-                        <span className="flex items-center gap-2">
-                          <Users className="w-5 h-5 text-[#B31942]" />
-                          {vehicle.passengers}
-                        </span>
-                        <span className="flex items-center gap-2">
-                          <Luggage className="w-5 h-5 text-[#B31942]" />
-                          {vehicle.luggage}
-                        </span>
-                        <span className="flex items-center gap-2">
-                          <Wifi className="w-5 h-5 text-[#B31942]" />
-                          WiFi
-                        </span>
-                      </div>
-                      <Link
-                        href="/booking"
-                        className="bg-black text-white px-6 py-2 rounded font-semibold mt-2">
-                        Book a Ride
-                      </Link>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-              </Carousel>
-            </div>
-          </div>
-        </div>
-        {/* Right: Sidebar */}
-        <div className="flex flex-col gap-4">
           <a
             href="https://www.rnhlimo.com/booking"
-            className="block bg-black text-white text-center font-bold py-3 mb-2">
-            Book Now
+            className="bg-black text-white font-bold py-3 px-8 rounded shadow hover:bg-gray-900 transition text-lg">
+            MAKE A RESERVATION
           </a>
-          <a
-            href="https://www.rnhlimo.com/our-fleet939e955b"
-            className="block bg-gray-300 text-black text-center font-bold py-3 mb-4">
-            View Our Fleet
-          </a>
-          <ConnectForm />
         </div>
-      </div>
-    </main>
+      </section>
+      <main className="min-h-screen bg-white py-8 px-2 md:px-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Left: Main Content */}
+          <div className="lg:col-span-2">
+            <h2 className="text-2xl font-bold mb-2">
+              Ride in Elegance and Style with RnH Worldwide Chauffeur Driven
+              Limousine Service
+            </h2>
+            <p className="mb-2">
+              Experience the epitome of sophistication and convenience with RnH
+              Worldwide Limo&apos;s bespoke Winery and Brewery Tours.
+            </p>
+            <p className="mb-2">
+              Indulge in a journey meticulously tailored to your preferences as
+              we whisk you away to explore the finest breweries, distilleries,
+              and vineyards across Maryland, Washington DC, Virginia, and
+              beyond. Our dedicated team at RnH Worldwide Limo ensures a private
+              getaway where every detail is impeccably managed, allowing you to
+              fully immerse yourself in the flavors and ambiance of the
+              region&apos;s premier establishments.
+            </p>
+            <p className="mb-6">
+              Enjoy a seamless and stress-free Winery Tour experience with RnH
+              Worldwide Limo. With suggested tour durations ranging from 4 to 6
+              hours for an enriching exploration of multiple locations, or 8 to
+              10 hours for a comprehensive all-day excursion, our meticulously
+              planned itineraries cater to your every need. From transportation
+              to tastings, dining, and leisurely shopping, let us curate an
+              itinerary that promises unforgettable moments of relaxation and
+              indulgence. Trust RnH Worldwide Limo to elevate your Winery and
+              Brewery Tours to new heights of sophistication and refinement.
+            </p>
+            <Accordion type="single" collapsible className="w-full">
+              {countyTours.map((county, idx) => (
+                <AccordionItem key={county.county} value={county.county}>
+                  <AccordionTrigger className="text-lg font-bold uppercase tracking-wide">
+                    {county.county}
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    {county.locations.length > 0 ? (
+                      <ul className="list-disc list-inside ml-4">
+                        {county.locations.map((loc) => (
+                          <li key={loc}>{loc}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <span className="text-gray-500">Coming soon...</span>
+                    )}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+            {/* Car/Fleet Slider */}
+            <div className="my-16 flex justify-center items-center w-full">
+              <div className="flex flex-col items-center w-full max-w-4xl">
+                <h2 className="text-3xl font-bold text-center mb-2">Fleet</h2>
+                <p className="text-center mb-8 text-gray-600">
+                  Premium Vehicles for Every Occasion, Combining Comfort, Style,
+                  and Reliability.
+                </p>
+                <Carousel className="w-full flex justify-center items-center">
+                  <CarouselContent>
+                    {vehicles.map((vehicle, idx) => (
+                      <CarouselItem
+                        key={vehicle.name}
+                        className="flex flex-col items-center justify-center px-4">
+                        <img
+                          src={vehicle.image}
+                          alt={vehicle.name}
+                          className="h-48 object-contain mb-4"
+                        />
+                        <h3 className="text-xl font-bold text-center mb-2">
+                          {vehicle.name}
+                        </h3>
+                        <div className="flex flex-col items-center gap-1 mb-2">
+                          <span className="flex items-center gap-2">
+                            <Users className="w-5 h-5 text-[#B31942]" />
+                            {vehicle.passengers}
+                          </span>
+                          <span className="flex items-center gap-2">
+                            <Luggage className="w-5 h-5 text-[#B31942]" />
+                            {vehicle.luggage}
+                          </span>
+                          <span className="flex items-center gap-2">
+                            <Wifi className="w-5 h-5 text-[#B31942]" />
+                            WiFi
+                          </span>
+                        </div>
+                        <Link
+                          href="/booking"
+                          className="bg-black text-white px-6 py-2 rounded font-semibold mt-2">
+                          Book a Ride
+                        </Link>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </Carousel>
+              </div>
+            </div>
+          </div>
+          {/* Right: Sidebar */}
+          <div className="flex flex-col gap-4 lg:sticky lg:top-8 h-fit">
+            <a
+              href="https://www.rnhlimo.com/booking"
+              className="block bg-black text-white text-center font-bold py-3 mb-2">
+              Book Now
+            </a>
+            <a
+              href="https://www.rnhlimo.com/our-fleet939e955b"
+              className="block bg-gray-300 text-black text-center font-bold py-3 mb-4">
+              View Our Fleet
+            </a>
+            <ConnectForm />
+            <NeedHelpBooking
+              phone="+1 (443) 336-3333"
+              bookingUrl="https://www.rnhlimo.com/booking"
+            />
+          </div>
+        </div>
+      </main>
+    </>
   );
 }
