@@ -13,7 +13,7 @@ import {
 
 const BookingForm = () => {
   const [formData, setFormData] = useState({
-    serviceType: "From Airport",
+    serviceType: "To Airport",
     pickupDate: "",
     pickupTime: "",
     pickupLocation: "",
@@ -21,15 +21,16 @@ const BookingForm = () => {
     passengers: 1,
     luggage: 0,
     accessible: false,
+    hours: 1,
   });
+  const [error, setError] = useState("");
 
   const serviceTypes = [
-    "From Airport",
     "To Airport",
-    "Point to Point",
-    "Hourly Service",
-    "Wedding Service",
-    "Corporate Service",
+    "From Airport",
+    "Place to Place",
+    "Hour Wise",
+    "Special Service",
   ];
 
   const handleInputChange = (field: string, value: any) => {
@@ -63,6 +64,32 @@ const BookingForm = () => {
     });
   };
 
+  // Helper to get today's date in yyyy-mm-dd format
+  const getToday = () => {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+    return `${yyyy}-${mm}-${dd}`;
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    // Validate date and time
+    if (!formData.pickupDate || !formData.pickupTime) {
+      setError("Please select both date and time.");
+      return;
+    }
+    const now = new Date();
+    const selected = new Date(`${formData.pickupDate}T${formData.pickupTime}`);
+    if (selected < now) {
+      setError("Please select a future date and time.");
+      return;
+    }
+    // ...submit logic here...
+  };
+
   return (
     <section className="py-4">
       <div className="container-custom">
@@ -76,7 +103,10 @@ const BookingForm = () => {
                 Quick booking for your next journey
               </p>
             </div>
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
+              {error && (
+                <div className="text-red-600 text-sm mb-2">{error}</div>
+              )}
               {/* Service Type */}
               <div>
                 <label className="block text-sm font-medium text-black mb-1">
@@ -104,6 +134,7 @@ const BookingForm = () => {
                   <input
                     type="date"
                     value={formData.pickupDate}
+                    min={getToday()}
                     onChange={(e) =>
                       handleInputChange("pickupDate", e.target.value)
                     }
@@ -125,13 +156,20 @@ const BookingForm = () => {
                 </div>
               </div>
               {/* Locations */}
+              {/* Pick-Up Location (label changes for From Airport) */}
               <div>
                 <label className="block text-sm font-medium text-black mb-1">
-                  Pick-Up Location
+                  {formData.serviceType === "From Airport"
+                    ? "Airport"
+                    : "Pick-Up Location"}
                 </label>
                 <input
                   type="text"
-                  placeholder="Pick-up location"
+                  placeholder={
+                    formData.serviceType === "From Airport"
+                      ? "Airport"
+                      : "Pick-up location"
+                  }
                   value={formData.pickupLocation}
                   onChange={(e) =>
                     handleInputChange("pickupLocation", e.target.value)
@@ -139,13 +177,20 @@ const BookingForm = () => {
                   className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#B31942] focus:border-transparent text-sm"
                 />
               </div>
+              {/* Drop-Off Location (label changes for To Airport) */}
               <div>
                 <label className="block text-sm font-medium text-black mb-1">
-                  Drop-Off Location
+                  {formData.serviceType === "To Airport"
+                    ? "Airport"
+                    : "Drop-Off Location"}
                 </label>
                 <input
                   type="text"
-                  placeholder="Drop-off location"
+                  placeholder={
+                    formData.serviceType === "To Airport"
+                      ? "Airport"
+                      : "Drop-off location"
+                  }
                   value={formData.dropoffLocation}
                   onChange={(e) =>
                     handleInputChange("dropoffLocation", e.target.value)
@@ -153,6 +198,23 @@ const BookingForm = () => {
                   className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#B31942] focus:border-transparent text-sm"
                 />
               </div>
+              {/* Hours field for Hour Wise service */}
+              {formData.serviceType === "Hour Wise" && (
+                <div>
+                  <label className="block text-sm font-medium text-black mb-1">
+                    Hours
+                  </label>
+                  <input
+                    type="number"
+                    min={1}
+                    value={formData.hours}
+                    onChange={(e) =>
+                      handleInputChange("hours", Number(e.target.value))
+                    }
+                    className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#B31942] focus:border-transparent text-sm"
+                  />
+                </div>
+              )}
               {/* Passengers and Luggage */}
               <div className="grid grid-cols-2 gap-2">
                 <div>
