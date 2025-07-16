@@ -1,5 +1,6 @@
 "use client";
 import FleetVehicleLayout from "../../../components/FleetVehicleLayout";
+import { fleet } from "../../../components/fleetData";
 
 const mainImage = "/assets/images/coach-main.jpg";
 const galleryImages = [

@@ -1,32 +1,6 @@
 "use client";
 import RideServiceLayout from "@/components/RideServiceLayout";
-
-const vehicles = [
-  {
-    name: "MERCEDES EXECUTIVE SPRINTER",
-    image:
-      "https://lirp.cdn-website.com/3ad4fc82/dms3rep/multi/opt/fleet-11-a59231ad-1920w.jpg",
-    passengers: "12 Passengers",
-    luggage: "12 Luggages",
-    features: ["WiFi"],
-  },
-  {
-    name: "MERCEDES LIMO SPRINTER",
-    image:
-      "https://lirp.cdn-website.com/3ad4fc82/dms3rep/multi/opt/fleet-14-258d4e3e-1920w.png",
-    passengers: "13 Passengers",
-    luggage: "12 Luggages",
-    features: ["WiFi"],
-  },
-  {
-    name: "LINCOLN MKT LIMOUSINE",
-    image:
-      "https://lirp.cdn-website.com/3ad4fc82/dms3rep/multi/opt/fleet-15-be81418e-1920w.png",
-    passengers: "8 Passengers",
-    luggage: "0 Luggages",
-    features: ["WiFi"],
-  },
-];
+import { fleet } from "../../../components/fleetData";
 
 export default function WeddingPromPage() {
   return (
@@ -34,7 +8,7 @@ export default function WeddingPromPage() {
       heroTitle="Wedding & Prom Limo"
       heroSubtitle="Make your special day or prom night unforgettable with RnH Worldwide Limousine Service. Safe, reliable, and luxurious transportation for your most important celebrations."
       heroImage="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1600"
-      vehicles={vehicles}>
+      vehicles={fleet}>
       <section className="mb-8">
         <h2 className="text-2xl font-bold mb-2">
           Make Your Prom Night Unforgettable with RnH Worldwide Limousine

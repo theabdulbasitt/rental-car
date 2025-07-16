@@ -1,5 +1,6 @@
 "use client";
 import FleetVehicleLayout from "@/components/FleetVehicleLayout";
+import { fleet } from "../../../components/fleetData";
 
 const mainImage = "/assets/images/sedan-main.jpg";
 const galleryImages = [
@@ -7,36 +8,8 @@ const galleryImages = [
   "/assets/images/sedan2.jpg",
   "/assets/images/sedan3.jpg",
 ];
-const fleetVehicles = [
-  {
-    name: "Luxury Mercedes S550",
-    image: "/assets/images/mercedes-s550.png",
-    passengers: "3",
-    luggage: "3",
-    features: ["WiFi"],
-  },
-  {
-    name: "Exclusive Sedan",
-    image: "/assets/images/exclusive-sedan.png",
-    passengers: "3",
-    luggage: "3",
-    features: ["WiFi"],
-  },
-  {
-    name: "Exclusive SUV",
-    image: "/assets/images/exclusive-suv.png",
-    passengers: "6",
-    luggage: "6",
-    features: ["WiFi"],
-  },
-  {
-    name: "Sprinter Van",
-    image: "/assets/images/sprinter-van.png",
-    passengers: "Call for Rates",
-    luggage: "Yes",
-    features: ["WiFi"],
-  },
-];
+const sedanNames = ["Executive Sedan", "Eco Urban Sedan", "Elite S-550 Sedan"];
+const fleetVehicles = fleet.filter((v) => sedanNames.includes(v.name));
 
 export default function SedansPage() {
   return (

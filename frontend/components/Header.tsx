@@ -56,12 +56,12 @@ const Header = () => {
   ];
 
   const fleetMenu: { name: string; href: string }[] = [
-    { name: "Sedans", href: "/fleet/sedans" },
-    { name: "SUVs", href: "/fleet/suvs" },
-    { name: "Limousines", href: "/fleet/limousines" },
-    { name: "Sprinter Vans", href: "/fleet/sprinter-vans" },
-    { name: "Mini Buses", href: "/fleet/mini-buses" },
-    { name: "Coaches", href: "/fleet/coaches" },
+    { name: "Executive Sedan", href: "/fleet/sedans" },
+    { name: "Eco Urban Sedan", href: "/fleet/sedans" },
+    { name: "Family Minivan", href: "/fleet/minivans" },
+    { name: "Premium Full-Size SUV", href: "/fleet/suvs" },
+    { name: "Elite S-550 Sedan", href: "/fleet/sedans" },
+    { name: "14-Passenger Executive Van", href: "/fleet/vans" },
   ];
 
   const companyMenu: { name: string; href: string }[] = [

@@ -1,4 +1,5 @@
 import FleetVehicleLayout from "../../../components/FleetVehicleLayout";
+import { fleet } from "../../../components/fleetData";
 
 const mainImage = "/assets/images/limousine-main.jpg";
 const galleryImages = [

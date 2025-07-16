@@ -10,8 +10,10 @@ import {
   Plus,
   Minus,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const BookingForm = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     serviceType: "To Airport",
     pickupDate: "",
@@ -87,7 +89,13 @@ const BookingForm = () => {
       setError("Please select a future date and time.");
       return;
     }
-    // ...submit logic here...
+    // Redirect to car selection with all form data as query params
+    const params = new URLSearchParams({
+      ...Object.fromEntries(
+        Object.entries(formData).map(([k, v]) => [k, String(v)])
+      ),
+    });
+    router.push(`/booking/select-car?${params.toString()}`);
   };
 
   return (

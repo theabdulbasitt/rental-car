@@ -16,6 +16,7 @@ import {
 import { Users, Luggage, Wifi } from "lucide-react";
 import Link from "next/link";
 import NeedHelpBooking from "@/components/NeedHelpBooking";
+import { fleet } from "../../../components/fleetData";
 
 const countyTours = [
   {
@@ -55,34 +56,6 @@ const countyTours = [
   { county: "Montgomery County Tour Locations", locations: [] },
   { county: "Washington DC Tour Locations", locations: [] },
   { county: "North Virginia Tour Locations", locations: [] },
-];
-
-const vehicles = [
-  {
-    name: "MERCEDES EXECUTIVE SPRINTER",
-    image:
-      "https://lirp.cdn-website.com/3ad4fc82/dms3rep/multi/opt/fleet-11-a59231ad-1920w.jpg",
-    passengers: "12 Passengers",
-    luggage: "12 Luggages",
-    features: ["WiFi"],
-  },
-  {
-    name: "MERCEDES LIMO SPRINTER",
-    image:
-      "https://lirp.cdn-website.com/3ad4fc82/dms3rep/multi/opt/fleet-14-258d4e3e-1920w.png",
-    passengers: "13 Passengers",
-    luggage: "12 Luggages",
-    features: ["WiFi"],
-  },
-  {
-    name: "LINCOLN MKT LIMOUSINE",
-    image:
-      "https://lirp.cdn-website.com/3ad4fc82/dms3rep/multi/opt/fleet-15-be81418e-1920w.png",
-    passengers: "8 Passengers",
-    luggage: "0 Luggages",
-    features: ["WiFi"],
-  },
-  // Add more vehicles as needed
 ];
 
 function ConnectForm() {
@@ -252,7 +225,7 @@ export default function WineCityTourPage() {
                 </p>
                 <Carousel className="w-full flex justify-center items-center">
                   <CarouselContent>
-                    {vehicles.map((vehicle, idx) => (
+                    {fleet.map((vehicle, idx) => (
                       <CarouselItem
                         key={vehicle.name}
                         className="flex flex-col items-center justify-center px-4">

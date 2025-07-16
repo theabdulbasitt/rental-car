@@ -1,22 +1,6 @@
 "use client";
 import AirportServiceLayout from "@/components/AirportServiceLayout";
-
-const vehicles = [
-  {
-    name: "Luxury Sedan",
-    image: "/assets/images/sedan.png",
-    passengers: "3 passengers",
-    luggage: "2 bags",
-    features: ["WiFi"],
-  },
-  {
-    name: "Executive SUV",
-    image: "/assets/images/suv.png",
-    passengers: "6 passengers",
-    luggage: "5 bags",
-    features: ["WiFi"],
-  },
-];
+import { fleet } from "../../../components/fleetData";
 
 export default function BWIAirportPage() {
   return (
@@ -24,7 +8,7 @@ export default function BWIAirportPage() {
       heroTitle="BWI Airport Transportation"
       heroSubtitle="Reliable, comfortable, and on-time airport transfers to and from Baltimore/Washington International."
       heroImage="/assets/images/bwi-airport.jpg"
-      vehicles={vehicles}
+      vehicles={fleet}
       faq={<div />}>
       <div className="prose max-w-none mb-8">
         <h2>About Our BWI Airport Service</h2>

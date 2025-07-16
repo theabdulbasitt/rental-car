@@ -1,15 +1,6 @@
 "use client";
 import RideServiceLayout from "@/components/RideServiceLayout";
-
-const vehicles = [
-  {
-    name: "Luxury Sedan",
-    image: "/assets/images/sedan.png",
-    passengers: "3 passengers",
-    luggage: "2 bags",
-    features: ["WiFi"],
-  },
-];
+import { fleet } from "../../../components/fleetData";
 
 export default function HourlyLimoPage() {
   return (
@@ -17,7 +8,7 @@ export default function HourlyLimoPage() {
       heroTitle="Hourly Limo Service"
       heroSubtitle="Flexible, on-demand luxury transportation for any occasion. Book by the hour and enjoy professional service tailored to your schedule."
       heroImage="/assets/images/hourly-limo.jpg"
-      vehicles={vehicles}>
+      vehicles={fleet}>
       <div className="prose max-w-none mb-8">
         <h2>Why Choose Our Hourly Limo Service?</h2>
         <ul>

@@ -1,32 +1,6 @@
 "use client";
 import RideServiceLayout from "@/components/RideServiceLayout";
-
-const vehicles = [
-  {
-    name: "MERCEDES SPRINTER VAN",
-    image:
-      "https://lirp.cdn-website.com/3ad4fc82/dms3rep/multi/opt/fleet-11-a59231ad-1920w.jpg",
-    passengers: "12 Passengers",
-    luggage: "12 Luggages",
-    features: ["WiFi"],
-  },
-  {
-    name: "FORD TRANSIT VAN",
-    image:
-      "https://lirp.cdn-website.com/3ad4fc82/dms3rep/multi/opt/fleet-14-258d4e3e-1920w.png",
-    passengers: "14 Passengers",
-    luggage: "14 Luggages",
-    features: ["WiFi"],
-  },
-  {
-    name: "CHEVROLET EXPRESS VAN",
-    image:
-      "https://lirp.cdn-website.com/3ad4fc82/dms3rep/multi/opt/fleet-15-be81418e-1920w.png",
-    passengers: "15 Passengers",
-    luggage: "15 Luggages",
-    features: ["WiFi"],
-  },
-];
+import { fleet } from "../../../components/fleetData";
 
 export default function VanShuttlePage() {
   return (
@@ -34,7 +8,7 @@ export default function VanShuttlePage() {
       heroTitle="Van & Exclusive Shuttle Service"
       heroSubtitle="Exhale Stress, Embrace Comfort: Trust AirportShuttles4Less for seamless group travel, airport transfers, and more across the DMV area."
       heroImage="https://images.pexels.com/photos/167964/pexels-photo-167964.jpeg?auto=compress&cs=tinysrgb&w=1600"
-      vehicles={vehicles}>
+      vehicles={fleet}>
       <section className="mb-8">
         <img
           src="https://images.pexels.com/photos/1118448/pexels-photo-1118448.jpeg?auto=compress&cs=tinysrgb&w=800"

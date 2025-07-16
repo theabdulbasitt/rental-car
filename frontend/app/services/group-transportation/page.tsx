@@ -1,15 +1,6 @@
 "use client";
 import RideServiceLayout from "@/components/RideServiceLayout";
-
-const vehicles = [
-  {
-    name: "Sprinter Van",
-    image: "/assets/images/sprinter-van.png",
-    passengers: "14 passengers",
-    luggage: "10 bags",
-    features: ["WiFi"],
-  },
-];
+import { fleet } from "../../../components/fleetData";
 
 export default function GroupTransportationPage() {
   return (
@@ -17,7 +8,7 @@ export default function GroupTransportationPage() {
       heroTitle="Group Transportation"
       heroSubtitle="Seamless travel for groups of any size. Perfect for events, tours, and corporate outings."
       heroImage="/assets/images/group-transportation.jpg"
-      vehicles={vehicles}>
+      vehicles={fleet}>
       <div className="prose max-w-none mb-8">
         <h2>Travel Together, Arrive Together</h2>
         <ul>

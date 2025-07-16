@@ -1,5 +1,6 @@
 "use client";
 import FleetVehicleLayout from "../../../components/FleetVehicleLayout";
+import { fleet } from "../../../components/fleetData";
 
 const mainImage = "/assets/images/mini-bus-main.jpg";
 const galleryImages = [
