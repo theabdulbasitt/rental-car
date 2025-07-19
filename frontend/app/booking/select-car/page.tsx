@@ -1,11 +1,44 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
 import { fleet } from "@/components/fleetData";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+
+const ORS_API_KEY = process.env.NEXT_PUBLIC_ORS_API_KEY;
+
+async function geocodeAddress(address: string): Promise<[number, number]> {
+  const url = `https://api.openrouteservice.org/geocode/search?api_key=${ORS_API_KEY}&text=${encodeURIComponent(
+    address
+  )}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  if (data.features && data.features.length > 0) {
+    return data.features[0].geometry.coordinates; // [lng, lat]
+  }
+  throw new Error("Address not found");
+}
+
+async function getDistance(start: [number, number], end: [number, number]) {
+  const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${ORS_API_KEY}`;
+  const body = {
+    coordinates: [start, end],
+  };
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  const data = await res.json();
+  if (data.routes && data.routes[0]) {
+    return data.routes[0].summary.distance; // in meters
+  }
+  throw new Error("Distance calculation failed");
+}
 
 export default function CarSelectionPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   // Get all booking data from query params
   const bookingData = useMemo(() => {
@@ -27,13 +60,34 @@ export default function CarSelectionPage() {
       parseInt(car.luggage, 10) >= luggage
   );
 
-  const handleSelectCar = (carName: string) => {
-    // Pass all booking data + selected car to next step as query params
-    const params = new URLSearchParams({
-      ...bookingData,
-      selectedCar: carName,
-    });
-    router.push(`/booking/confirm?${params.toString()}`);
+  const handleSelectCar = async (carName: string) => {
+    setLoading(true);
+    setError("");
+    try {
+      // Geocode pickup and dropoff
+      const [pickupLng, pickupLat] = await geocodeAddress(
+        bookingData.pickupLocation
+      );
+      const [dropoffLng, dropoffLat] = await geocodeAddress(
+        bookingData.dropoffLocation
+      );
+      // Get distance in meters
+      const distance = await getDistance(
+        [pickupLng, pickupLat],
+        [dropoffLng, dropoffLat]
+      );
+      // Pass all booking data + selected car + distance to next step as query params
+      const params = new URLSearchParams({
+        ...bookingData,
+        selectedCar: carName,
+        distance: String((distance / 1000).toFixed(2)), // convert to km
+      });
+      router.push(`/booking/finalize?${params.toString()}`);
+    } catch (err: any) {
+      setError(err.message || "Error calculating distance.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -46,7 +100,14 @@ export default function CarSelectionPage() {
           Showing vehicles for <b>{passengers}</b> passenger(s) and{" "}
           <b>{luggage}</b> luggage(s)
         </p>
-        {filteredFleet.length === 0 ? (
+        {error && (
+          <div className="text-center text-red-600 font-semibold">{error}</div>
+        )}
+        {loading ? (
+          <div className="text-center text-lg py-8">
+            Calculating distance...
+          </div>
+        ) : filteredFleet.length === 0 ? (
           <div className="text-center text-red-600 font-semibold">
             No vehicles available for your requirements. Please go back and
             adjust your selection.
