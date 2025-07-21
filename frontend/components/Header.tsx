@@ -30,7 +30,7 @@ const Header = () => {
     },
     { name: "Hourly Limo Service", href: "/services/hourly-limo" },
     { name: "Corporate Transportaation Service", href: "/services/corporate" },
-    { name: "Winery & City Tours", href: "/services/wine-city-tour" },
+    { name: "City Tour", href: "/services/city-tour" },
     { name: "Group Transportation", href: "/services/group-transportation" },
     { name: "Private School Bus Service", href: "/services/school-transport" },
     { name: "Bachelor/ette Party Limo Service", href: "/services/party-limo" },
